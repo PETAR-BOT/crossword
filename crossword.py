@@ -6,7 +6,6 @@
 import re
 from pathlib import Path
 import random
-import json
 import string
 from collections import defaultdict
 import pickle
@@ -47,11 +46,17 @@ class Crossword:
 
         # show puzzle
         self.get_game()
+        self.get_answers()
 
     def load_vocab(self, path):
         path = Path(path)
         with open(path, mode='rb') as openedfile:
             self.vocab = pickle.load(openedfile)
+
+    def save_vocab(self, path):
+        path = Path(path)
+        with open(path, mode='wb') as openedfile:
+            self.vocab = pickle.dump(self.vocab, openedfile)
 
     def place_blocks(self, board, curr_blockct, empty_pos):
         """
@@ -365,4 +370,15 @@ class Crossword:
         for pos in self.across:
             print(pos, ': ', random.choice(self.vocab[self.across[pos]]), end='\n', file=f)
         print("Game ready")
+        f.close()
+
+    def get_answers(self):
+        f = open('answers.txt', 'w')
+        print("DOWN", file=f)
+        self.down, self.across = self.find_word_pos(self.solved_board)
+        for pos in self.down:
+            print(pos, ': ', self.down[pos], end='\n', file=f)
+        print("ACROSS", file=f)
+        for pos in self.across:
+            print(pos, ': ', self.across[pos], end='\n', file=f)
         f.close()
