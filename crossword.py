@@ -252,31 +252,3 @@ class Crossword:
         :return:
         """
         pass
-
-    def pick_pos_heuristic(self, pos):
-        pos_row, pos_col = pos // self.width, pos % self.width
-        up, down, left, right = -1, -1, -1, -1
-        next_block = self.board.find('#')
-        while next_block > 0:
-            nb_row, nb_col = next_block // self.width, next_block % self.width
-            if nb_col == pos_col:
-                if nb_row < pos_row:
-                    up = pos_row - nb_row - 1
-                else:
-                    down = nb_row - pos_row - 1
-            elif nb_row == pos_row:
-                if nb_col > pos_col:
-                    right = nb_col - pos_col - 1
-                else:
-                    left = pos_col - nb_col - 1
-            else:
-                if up == -1: up = pos_row
-                if down == -1: down = self.height - pos_row - 1
-                if left == -1: left = pos_col
-                if right == -1: right = self.width - pos_col - 1
-            next_block = self.board.find('#', next_block + 1)
-        if up == -1: up = pos_row
-        if down == -1: down = self.height - pos_row - 1
-        if left == -1: left = pos_col
-        if right == -1: right = self.width - pos_col - 1
-        return left * right + up * down
