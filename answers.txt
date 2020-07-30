@@ -1,0 +1,24 @@
+DOWN
+0 :  SEC
+1 :  OFO
+2 :  STRAFER
+4 :  LINCOLN
+5 :  ACE
+6 :  PET
+17 :  ORR
+28 :  DOE
+29 :  ERA
+33 :  SEE
+34 :  TEE
+ACROSS
+0 :  SOS
+4 :  LAP
+7 :  EFT
+11 :  ICE
+14 :  CORONET
+23 :  ARC
+28 :  DEFROST
+35 :  ORE
+39 :  LEE
+42 :  EAR
+46 :  NEE
